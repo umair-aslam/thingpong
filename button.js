@@ -12,37 +12,79 @@ var teamAminus = 6;
 var teamBplus = 25;
 var teamBminus = 14;
 
+var started = false;
+var clock = null;
+
+var pressedPin = -1;
+
 wpi.pinMode(teamAplus, wpi.INPUT);
 wpi.pullUpDnControl(teamAplus, wpi.PUD_UP);
 wpi.wiringPiISR(teamAplus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(teamAplus), 250);
+	if (wpi.digitalRead(teamAplus)) {
+		if (false === started) {
+			started = true;
+			pressedPin = teamAplus;
+			clock = setTimeout(score, 250);
+		}
+	} else {
+		started = false;
+		clearTimeout(clock);
+	}
 });
+
 wpi.pinMode(teamAminus, wpi.INPUT);
 wpi.pullUpDnControl(teamAminus, wpi.PUD_UP);
 wpi.wiringPiISR(teamAminus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(teamAminus), 250);
+	if (wpi.digitalRead(teamAminus)) {
+		if (false === started) {
+			started = true;
+			pressedPin = teamAminus;
+			clock = setTimeout(score, 250);
+		}
+	} else {
+		started = false;
+		clearTimeout(clock);
+	}
 });
 
 wpi.pinMode(teamBplus, wpi.INPUT);
 wpi.pullUpDnControl(teamBplus, wpi.PUD_UP);
 wpi.wiringPiISR(teamBplus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(teamBplus), 250);
+	if (wpi.digitalRead(teamBplus)) {
+		if (false === started) {
+			started = true;
+			pressedPin = teamBplus;
+			clock = setTimeout(score, 250);
+		}
+	} else {
+		started = false;
+		clearTimeout(clock);
+	}
 });
+
 wpi.pinMode(teamBminus, wpi.INPUT);
 wpi.pullUpDnControl(teamBminus, wpi.PUD_UP);
 wpi.wiringPiISR(teamBminus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(teamBminus), 250);
+	if (wpi.digitalRead(teamBminus)) {
+		if (false === started) {
+			started = true;
+			pressedPin = teamBminus;
+			clock = setTimeout(score, 250);
+		}
+	} else {
+		started = false;
+		clearTimeout(clock);
+	}
 });
 
-
-function score(pin) {
-	if (pin === teamAplus) {
-		console.log('team A ++' + pin)
-	} else if (pin === teamAminus) {
-		console.log('team A -- ' + pin)
-	} else if (pin === teamBplus) {
-		console.log('team B ++ ' + pin)
-	} else if (pin === teamBminus) {
-		console.log('team B -- ' + pin)
+function score() {
+	if (pressedPin === teamAplus) {
+		console.log('team A ++' + pressedPin);
+	} else if (pressedPin === teamAminus) {
+		console.log('team A -- ' + pressedPin);
+	} else if (pressedPin === teamBplus) {
+		console.log('team B ++ ' + pressedPin);
+	} else if (pressedPin === teamBminus) {
+		console.log('team B -- ' + pressedPin);
 	}
 }
