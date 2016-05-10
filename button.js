@@ -7,7 +7,7 @@ var teamBplus = 25
 wpi.pinMode(teamAplus, wpi.INPUT);
 wpi.pullUpDnControl(teamAplus, wpi.PUD_UP);
 wpi.wiringPiISR(teamAplus, wpi.INT_EDGE_FALLING, function(){
-	handleButton(greenButton);
+	handleButton(teamAplus);
 });
 
 wpi.pinMode(teamBplus, wpi.INPUT);
