@@ -15,23 +15,23 @@ var teamBminus = 14;
 wpi.pinMode(teamAplus, wpi.INPUT);
 wpi.pullUpDnControl(teamAplus, wpi.PUD_UP);
 wpi.wiringPiISR(teamAplus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(pin), 250);
+	setTimeout(score(teamAplus), 250);
 });
 wpi.pinMode(teamAminus, wpi.INPUT);
 wpi.pullUpDnControl(teamAminus, wpi.PUD_UP);
 wpi.wiringPiISR(teamAminus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(pin), 250);
+	setTimeout(score(teamAminus), 250);
 });
 
 wpi.pinMode(teamBplus, wpi.INPUT);
 wpi.pullUpDnControl(teamBplus, wpi.PUD_UP);
 wpi.wiringPiISR(teamBplus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(pin), 250);
+	setTimeout(score(teamBplus), 250);
 });
 wpi.pinMode(teamBminus, wpi.INPUT);
 wpi.pullUpDnControl(teamBminus, wpi.PUD_UP);
 wpi.wiringPiISR(teamBminus, wpi.INT_EDGE_FALLING, function() {
-	setTimeout(score(pin), 250);
+	setTimeout(score(teamBminus), 250);
 });
 
 
